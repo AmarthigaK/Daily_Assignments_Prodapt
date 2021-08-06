@@ -1,4 +1,10 @@
 import threading,time
+import timeit
+import logging
+
+logging.basicConfig(filename='Execution.log', level=logging.INFO)
+
+#Finding Prime Numbers
 l = 2
 u = 500
 
@@ -12,6 +18,7 @@ def prime(l,u):
             else:
                 print(n)
 
+#Finding Polindrome Numbers
 min =10
 max = 500
 
@@ -27,12 +34,19 @@ def polindrome(min,max):
         if(num == reverse):
             print("%d " %num, end = '  ')
 
-p1=threading.Thread(target=prime, args=(l,u,))
-p2=threading.Thread(target=polindrome, args=(min,max,))
-p1.start()
-p2.start()
-p1.join()
-print("Prime numbers are printing")
-p2.join()
-print("Polindrome numbers are printing")
-print(".......")
+if (__name__)=="__main__":
+    p1=threading.Thread(target=prime, args=(l,u,))
+    p2=threading.Thread(target=polindrome, args=(min,max,))
+    p1.start()
+    p2.start()
+    p1.join()
+    print("Prime numbers are printing")
+    p2.join()
+    print("Polindrome numbers are printing")
+    print(".......")
+
+    try:                
+        logging.info("Prime and Polindrome numbers are printed successfully by Multithreading.")
+        #logging.info(timeit.timeit(prime))
+    except:
+        logging.error("An unkown error happened")
